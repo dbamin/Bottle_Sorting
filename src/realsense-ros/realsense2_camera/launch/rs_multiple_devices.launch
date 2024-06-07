@@ -1,0 +1,61 @@
+<launch>
+  <!-- Configuration for Intel RealSense D435 Camera -->
+  <arg name="serial_no_d435" default="9507220710500000072149"/>
+  <arg name="camera_d435" default="d435_camera"/>
+  <arg name="tf_prefix_d435" default="$(arg camera_d435)"/>
+
+  <!-- Configuration for Intel RealSense D455 Camera -->
+  <arg name="serial_no_d455" default="241122302615"/>
+  <arg name="camera_d455" default="d455_camera"/>
+  <arg name="tf_prefix_d455" default="$(arg camera_d455)"/>
+
+  <!-- General settings for both cameras -->
+  <arg name="initial_reset" default="false"/>
+  <arg name="reconnect_timeout" default="6.0"/>
+
+  <!-- D435 Camera Group -->
+  <group ns="$(arg camera_d435)">
+    <include file="$(find realsense2_camera)/launch/includes/nodelet.launch.xml">
+      <arg name="serial_no" value="$(arg serial_no_d435)"/>
+      <arg name="tf_prefix" value="$(arg tf_prefix_d435)"/>
+      <arg name="initial_reset" value="$(arg initial_reset)"/>
+      <arg name="reconnect_timeout" value="$(arg reconnect_timeout)"/>
+      <!-- Additional parameters for D435 -->
+      <arg name="color_width" value="640"/>
+      <arg name="color_height" value="480"/>
+      <arg name="enable_color" value="true"/>
+      <arg name="depth_width" value="640"/>
+      <arg name="depth_height" value="480"/>
+      <arg name="enable_depth" value="true"/>
+      <arg name="infra_width" value="640"/>
+      <arg name="infra_height" value="480"/>
+      <arg name="enable_infra1" value="true"/>
+      <arg name="enable_infra2" value="true"/>
+    </include>
+  </group>
+
+  <!-- D455 Camera Group -->
+  <group ns="$(arg camera_d455)">
+    <include file="$(find realsense2_camera)/launch/includes/nodelet.launch.xml">
+      <arg name="serial_no" value="$(arg serial_no_d455)"/>
+      <arg name="tf_prefix" value="$(arg tf_prefix_d455)"/>
+      <arg name="initial_reset" value="$(arg initial_reset)"/>
+      <arg name="reconnect_timeout" value="$(arg reconnect_timeout)"/>
+      <!-- Additional parameters for D455 -->
+      <arg name="color_width" value="1280"/>
+      <arg name="color_height" value="720"/>
+      <arg name="enable_color" value="true"/>
+      <arg name="depth_width" value="1280"/>
+      <arg name="depth_height" value="720"/>
+      <arg name="enable_depth" value="true"/>
+      <arg name="infra_width" value="1280"/>
+      <arg name="infra_height" value="720"/>
+      <arg name="enable_infra1" value="true"/>
+      <arg name="enable_infra2" value="true"/>
+    </include>
+  </group>
+
+  <!-- Robot State Publisher and RViz for Visualization -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find realsense2_description)/rviz/urdf.rviz" required="true"/>
+</launch>
