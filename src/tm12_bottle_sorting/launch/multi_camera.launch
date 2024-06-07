@@ -1,0 +1,13 @@
+<launch>
+  <!-- Launch first RealSense Camera -->
+  <node name="camera1" pkg="realsense2_camera" type="realsense2_camera_node" output="screen">
+    <param name="serial_no" value="317222070960"/>
+    <param name="camera" value="camera1"/>
+  </node>
+
+  <!-- Launch second RealSense Camera -->
+  <node name="camera2" pkg="realsense2_camera" type="realsense2_camera_node" output="screen">
+    <param name="serial_no" value="241122302615"/>
+    <param name="camera" value="camera2"/>
+  </node>
+</launch>
