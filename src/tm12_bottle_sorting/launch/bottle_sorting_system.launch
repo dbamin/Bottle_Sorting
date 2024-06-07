@@ -1,0 +1,46 @@
+<launch>
+    <!-- Launch the C++ node for robot control -->
+    <node name="robot_control" pkg="tm12_bottle_sorting" type="node_1" output="screen">
+        <!-- Ensure this node exists and has execute permissions -->
+    </node>
+
+    <!-- Launch the Python node for image saving and processing -->
+    <node name="rgbd_image_saver" pkg="tm12_bottle_sorting" type="bottle_position.py" output="screen">
+        <param name="use_sim_time" value="false"/>
+        <!-- Parameters specific to the Python node can be added here -->
+    </node>
+    
+    <!-- Launch the C++ node for setting positions with feedback -->
+    <node name="set_positions_with_feedback" pkg="tm12_bottle_sorting" type="node_3" output="screen">
+        <!-- Ensure this node exists and has execute permissions -->
+    </node>
+
+    <!-- Launch the C++ node for the main code (gripper_ON.cpp) -->
+    <node name="gripper_ON" pkg="tm12_bottle_sorting" type="gripper_ON_node" output="screen">
+        <!-- Ensure this node exists and has execute permissions -->
+    </node>
+
+    <!-- Launch the C++ node for node_6 -->
+    <node name="node_6" pkg="tm12_bottle_sorting" type="node_6" output="screen">
+        <!-- Ensure this node exists and has execute permissions -->
+    </node>
+
+    <!-- Launch the Python node for brand detection -->
+    <node name="brand_detection" pkg="tm12_bottle_sorting" type="brand_detection.py" output="screen">
+        <param name="use_sim_time" value="false"/>
+        <!-- Parameters specific to the Python node can be added here -->
+    </node>
+
+    <!-- Launch the C++ node for node_7 -->
+    <node name="node_7" pkg="tm12_bottle_sorting" type="node_7" output="screen">
+        <!-- Ensure this node exists and has execute permissions -->
+    </node>
+    
+     <!-- Launch the Python node for human detection (node_9) -->
+    <node name="human_detection_node" pkg="tm12_bottle_sorting" type="human_detection_node.py" output="screen">
+        <param name="use_sim_time" value="false"/>
+        <!-- Parameters specific to the Python node can be added here -->
+    </node>
+    
+    
+</launch>
